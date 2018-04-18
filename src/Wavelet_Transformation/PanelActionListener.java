@@ -82,6 +82,7 @@ public class PanelActionListener implements ActionListener {
                     MainDrawPanel.tabbedPane.addTab("F(an, b)", MainDrawPanel.fillF2ChartPanel());
                     MainDrawPanel.tabbedPane.addTab("F(an, bm)", ImageCanvas.paintImage());
                     MainDrawPanel.tabbedPane.addTab("F(an, bm)", ImageCanvas.paintImage1());
+                
                 }        
             }
         }

@@ -124,6 +124,7 @@ public class MainDrawPanel extends JPanel {
         hPanel.add(redrawButton = new JButton(" Redraw Plots! "));
         text_out.setText("1_demo_record");
         hPanel.add(text_out);
+        redrawButton.addActionListener(new PanelActionListener());
         return fieldsPanel;
     }
     
