@@ -126,7 +126,90 @@ public class MainDrawPanel extends JPanel {
         hPanel.add(text_out);
         return fieldsPanel;
     }
-     
+    
+    
+    protected static ChartPanel fillFChartPanel() {
+        fSeries = new XYSeries("f(x)");
+
+        double x = -WaveletTransformations.A;
+        double h = 2 * WaveletTransformations.A / WaveletTransformations.Na;
+        for (int k = 0; k < WaveletTransformations.Na; k++) {
+            x += h;
+            fSeries.add(x, WaveletTransformations.f(x));
+        }
+        fDataset = new XYSeriesCollection();
+        fDataset.addSeries(fSeries);
+        return fChart = new ChartPanel(ChartFactory.createXYLineChart("", "x", " f(x)", fDataset, PlotOrientation.VERTICAL, true, true, false));
+    }
+
+    protected static ChartPanel fillPsi1ChartPanel() {
+        psi1Series = new XYSeries("");
+
+        double x = -WaveletTransformations.A;
+        double h = 2 * WaveletTransformations.A / WaveletTransformations.Na;
+        for (int k = 0; k < WaveletTransformations.Na; k++) {
+            x += h;
+            psi1Series.add(x, WaveletTransformations.psi1(x));
+        }
+        psi1Dataset = new XYSeriesCollection();
+        psi1Dataset.addSeries(psi1Series);
+        return psi1Chart = new ChartPanel(ChartFactory.createXYLineChart("", "x", " psi1(x)", psi1Dataset, PlotOrientation.VERTICAL, true, true, false));
+
+    }
+
+    protected static ChartPanel fillPsi2ChartPanel() {
+        psi2Series = new XYSeries("");
+
+        double x = -WaveletTransformations.A;
+        double h = 2 * WaveletTransformations.A / WaveletTransformations.Na;
+        for (int k = 0; k < WaveletTransformations.Na; k++) {
+            x += h;
+            psi2Series.add(x, WaveletTransformations.psi2(x));
+        }
+        psi2Dataset = new XYSeriesCollection();
+        psi2Dataset.addSeries(psi2Series);
+        return psi2Chart = new ChartPanel(ChartFactory.createXYLineChart("", "x", " psi2(x)", psi2Dataset, PlotOrientation.VERTICAL, true, true, false));
+
+    }
+
+    protected static ChartPanel fillF1ChartPanel() {
+        F1Psi1Series = new XYSeries("Psi1");
+        F1Psi2Series = new XYSeries("Psi2");
+        
+        double bn = -WaveletTransformations.B;
+        double hb = 2 * WaveletTransformations.B / WaveletTransformations.Nb;
+        
+        for(int n = 0; n < WaveletTransformations.Nb; n++){
+            bn += hb;
+            F1Psi1Series.add( bn, WaveletTransformations.F(WaveletTransformations.a, bn));
+            F1Psi2Series.add( bn, WaveletTransformations.FF(WaveletTransformations.a, bn));
+        }
+        F1Dataset = new XYSeriesCollection();
+        F1Dataset.addSeries(F1Psi1Series);
+        F1Dataset.addSeries(F1Psi2Series);
+        return F1Chart = new ChartPanel(ChartFactory.createXYLineChart("", "x", "F(a,bn)", F1Dataset, PlotOrientation.VERTICAL, true, true, false));
+    }
+
+    protected static ChartPanel fillF2ChartPanel() {
+        F2Psi1Series = new XYSeries("Psi1");
+        F2Psi2Series = new XYSeries("Psi2");
+        
+        double an = -WaveletTransformations.C;
+        double hc = 2 * WaveletTransformations.C / WaveletTransformations.Nc;
+        
+        for (int n = 0; n < WaveletTransformations.Nc; n++){
+            an += hc;
+            F2Psi1Series.add(an, WaveletTransformations.F(an, WaveletTransformations.b));
+            F2Psi2Series.add(an, WaveletTransformations.FF(an, WaveletTransformations.b));
+        }
+        F2Dataset = new XYSeriesCollection();
+        F2Dataset.addSeries(F2Psi1Series);
+        F2Dataset.addSeries(F2Psi2Series);
+        return F2Chart = new ChartPanel(ChartFactory.createXYLineChart("", "x", "F(an, b)", F2Dataset, PlotOrientation.VERTICAL, true, true, false));
+        
+    }
+
+    
     protected static JPanel fChartPanel, psi1ChartPanel, psi2ChartPanel, F1ChartPanel, F2ChartPanel, F3ChartPanel, fieldsPanel;
     protected static ChartPanel fChart, psi1Chart, psi2Chart, F1Chart, F2Chart, F3Chart;
     protected static JTabbedPane tabbedPane;
@@ -137,6 +220,8 @@ public class MainDrawPanel extends JPanel {
                aField = new JTextField(7), bField = new JTextField(7);
     protected static JTextArea text_out = new JTextArea();
     protected static JButton redrawButton;
+    protected static XYSeriesCollection fDataset, psi1Dataset, psi2Dataset, F1Dataset, F2Dataset, F3Dataset;
+    protected static XYSeries fSeries, psi1Series, psi2Series, F1Psi1Series, F1Psi2Series, F2Psi1Series, F2Psi2Series, F3Series;
     
     protected static final int DEFAULT_WIDTH = 950;
     protected static final int DEFAULT_HEIGHT = 600;
