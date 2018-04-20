@@ -122,9 +122,15 @@ public class MainDrawPanel extends JPanel {
         
         fieldsPanel.add(hPanel);
         hPanel.add(redrawButton = new JButton(" Redraw Plots! "));
+        hPanel.add(savePresetButton = new JButton(" save preset "));
+        hPanel.add(loadPresetButton = new JButton(" load preset "));
         text_out.setText("1_demo_record");
         hPanel.add(text_out);
         redrawButton.addActionListener(new PanelActionListener());
+        savePresetButton.addActionListener(new PanelActionListener());
+        loadPresetButton.addActionListener(new PanelActionListener());
+        
+        
         return fieldsPanel;
     }
     
@@ -220,7 +226,7 @@ public class MainDrawPanel extends JPanel {
                NaField = new JTextField(7), NbField = new JTextField(7), NcField = new JTextField(7),
                aField = new JTextField(7), bField = new JTextField(7);
     protected static JTextArea text_out = new JTextArea();
-    protected static JButton redrawButton;
+    protected static JButton redrawButton, savePresetButton, loadPresetButton;
     protected static XYSeriesCollection fDataset, psi1Dataset, psi2Dataset, F1Dataset, F2Dataset, F3Dataset;
     protected static XYSeries fSeries, psi1Series, psi2Series, F1Psi1Series, F1Psi2Series, F2Psi1Series, F2Psi2Series, F3Series;
     
